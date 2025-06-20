@@ -1,4 +1,4 @@
-#define _HAS_STD_BYTE 0          //  <-- ONLY one of these macros!
+#define _HAS_STD_BYTE 0          
 #define WIN32_LEAN_AND_MEAN
 
 #include "vault/vault_ts.hpp"
@@ -27,7 +27,7 @@ void KVStoreThreadSafe::diff(int a,int b) const{
 }
 std::vector<int> KVStoreThreadSafe::listVersions() const {
     std::shared_lock lock(m_);
-    return core_.listVersions();   // core_ is the underlying KVStore
+    return core_.listVersions();  
 }
 
 bool KVStoreThreadSafe::deleteVersion(int v){

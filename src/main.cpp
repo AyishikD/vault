@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-WinsockInit ws;  // starts & cleans up Winsock
+WinsockInit ws;  
 
 int main(int argc, char** argv) {
     KVStore core;
@@ -20,7 +20,6 @@ int main(int argc, char** argv) {
             std::vector<std::string> parts;
             std::string word;
             while (iss >> word) parts.push_back(word);
-            // Call your command handler here
         }
     } else {
         TcpServer server(store, 6389);

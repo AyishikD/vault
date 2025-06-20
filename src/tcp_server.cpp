@@ -8,17 +8,17 @@
 #include <vector>
 #include <string>
 
-// ---------- small RESP helpers ----------
+
 static std::string simple(const std::string& s){ return "+"+s+"\r\n"; }
 static std::string bulk  (const std::string& s){ return "$"+std::to_string(s.size())+"\r\n"+s+"\r\n"; }
 static std::string integer(long long n)        { return ":"+std::to_string(n)+"\r\n"; }
 static std::string error( const std::string& s){ return "-ERR "+s+"\r\n"; }
-// -----------------------------------------
 
-// forward
+
+
 static bool parseRESP(const std::string&, std::vector<std::string>&);
 
-// ===== constructor =====
+
 TcpServer::TcpServer(KVStoreThreadSafe& st, unsigned short p)
     : store_(st), port_(p)
 {
@@ -48,7 +48,6 @@ TcpServer::~TcpServer() {
     if (listenSock_ != INVALID_SOCKET) closesocket(listenSock_);
 }
 
-// ===== main accept loop =====
 void TcpServer::run() {
     while (true) {
         SOCKET cli = accept(listenSock_, nullptr, nullptr);
@@ -57,7 +56,6 @@ void TcpServer::run() {
     }
 }
 
-// ===== per‑client worker =====
 void TcpServer::handleClient(SOCKET s) {
     std::string buf;  char tmp[4096];
 
@@ -66,7 +64,7 @@ void TcpServer::handleClient(SOCKET s) {
         buf.append(tmp, n);
 
         std::vector<std::string> parts;
-        if (!parseRESP(buf, parts)) continue;   // need more bytes
+        if (!parseRESP(buf, parts)) continue;   
         buf.clear();
 
         std::string cmd = parts[0];
@@ -93,7 +91,6 @@ void TcpServer::handleClient(SOCKET s) {
     closesocket(s);
 }
 
-// ===== minimal RESP parser =====
 static bool parseRESP(const std::string& in, std::vector<std::string>& out) {
     if (in.empty() || in[0] != '*') return false;
     size_t pos = in.find("\r\n"); if (pos == std::string::npos) return false;

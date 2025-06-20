@@ -1,6 +1,6 @@
 #define _NO_CPP_STANDARD_BYTE
-#define _HAS_STD_BYTE 0       // <‑‑ disables std::byte in <cstddef>
-#define WIN32_LEAN_AND_MEAN   // optional: trims <windows.h>
+#define _HAS_STD_BYTE 0       
+#define WIN32_LEAN_AND_MEAN   
 #pragma once
 #include <cstdint>
 #include <string_view>

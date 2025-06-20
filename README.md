@@ -1,6 +1,6 @@
 ## 📦 Vault — Redis-Compatible Versioned Key-Value Store
 
-VaultKV is a lightweight, thread-safe, Redis-compatible key-value store implemented in C++ with support for **versioning**, **commits**, and **checkouts**.
+Vault is a lightweight, thread-safe, Redis-compatible key-value store implemented in C++ with support for **versioning**, **commits**, and **checkouts**.
 
 ---
 
